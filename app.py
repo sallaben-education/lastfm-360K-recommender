@@ -15,28 +15,28 @@ ratings = pd.read_csv("data/p0.tsv", sep="\t",
 print("SUMMING USERS BY PLAYS...")
 plays = ratings.groupby(['user'], as_index=False)[['user', 'plays']].sum().reset_index()
 userplays = dict(zip(plays["user"], plays["plays"]))
-
-topusers = dict(Counter(userplays).most_common(30))
-users = list(topusers.keys())
       
 print("LOADING MODEL...")
 algo = pickle.load(open('SVDBP.sav', 'rb'))
 
-# users =         ["02eeccf9502709d9d0d34ac99ded328d8201be18",
-#                  "0197a658d9ea8811877e518dfe399c52dd8a84d4",
-#                  "0301157d84b0ccc9a436479d11676eba0882010b",
-#                  "025e476b4e8f4aec3bf263c737b65fd856acd0c2",
-#                  "006261139d787c1e43b4c69d304f2772367c1005",
-#                  "00b18113f5b06f36dfb587f86b8ef4141dff3118",
-#                  "0005a18022e9a3df17694fe19f5b90edadda7953",
-#                  "00f57a7fe44eb4d0851d62c5f0ddd003ea43c7ae",
-#                  "000429493d9716b66b02180d208d09b5b89fbe64",
-#                  "03274dae59b1b5bc750a0738f8733b44972ce3c5",
-#                  "01760a1afde70737fa4dd70394e23690b3238768",
-#                  "0242309977d951b93ba29da5d0bd780bd237d086",
-#                  "0039d28c203c03dc8460fbb91fa295b287d49199",
-#                  "00554b78cbcf17e234ce8ef6abcc364ed2a2c4f4",
-#                  "0056ccd136b6ad6fcf090e2f51afd5cca888e56f"]
+users =         ["02eeccf9502709d9d0d34ac99ded328d8201be18",
+                 "0197a658d9ea8811877e518dfe399c52dd8a84d4",
+                 "0301157d84b0ccc9a436479d11676eba0882010b",
+                 "025e476b4e8f4aec3bf263c737b65fd856acd0c2",
+                 "006261139d787c1e43b4c69d304f2772367c1005",
+                 "00b18113f5b06f36dfb587f86b8ef4141dff3118",
+                 "0005a18022e9a3df17694fe19f5b90edadda7953",
+                 "00f57a7fe44eb4d0851d62c5f0ddd003ea43c7ae",
+                 "000429493d9716b66b02180d208d09b5b89fbe64",
+                 "03274dae59b1b5bc750a0738f8733b44972ce3c5",
+                 "01760a1afde70737fa4dd70394e23690b3238768",
+                 "0242309977d951b93ba29da5d0bd780bd237d086",
+                 "0039d28c203c03dc8460fbb91fa295b287d49199",
+                 "00554b78cbcf17e234ce8ef6abcc364ed2a2c4f4",
+                 "0056ccd136b6ad6fcf090e2f51afd5cca888e56f"]
+
+topusers = dict(Counter(userplays).most_common(24))
+users = set(set(topusers.keys()).union(set(users)))
 
 rap =           ["eminem",
                  "ludacris",
@@ -163,9 +163,7 @@ playdict = dict((k, v) for k, v in playdict.items() if (v > avg) & (counts[k] > 
 top150 = list(dict(Counter(playdict).most_common(150)).keys())
 
 all_artists = list(playdict.keys())
-all_artists.remove("tegan and sara")
 all_artists.remove("[unknown]")
-all_artists.remove("böhse onkelz")
 
 def predi(user, items):
     return algo.test(zip([user]*len(items), items, [1]*len(items)), verbose=False)

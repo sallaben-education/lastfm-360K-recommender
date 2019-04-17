@@ -50,9 +50,9 @@ button.btn-outline-primary:hover a, header a, button.btn-primary a, button.btn-p
     justify-content: space-evenly;
 }
 .user {
-    width: 350px;
-    max-width: 350px;
-    min-width: 350px;
+    width: 30%;
+    max-width: 30%;
+    min-width: 30%;
     webkit-box-shadow: 0px 5px 12px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 5px 12px 0px rgba(0,0,0,0.75);
     box-shadow: 0px 5px 12px 0px rgba(0,0,0,0.75);
@@ -63,6 +63,8 @@ button.btn-outline-primary:hover a, header a, button.btn-primary a, button.btn-p
     word-wrap: anywhere;
     margin: 15px;
     padding: 5px;
+}
+.container > .detaileduser {
     background: black;
 }
 .userlink {
