@@ -142,6 +142,13 @@ def mean(nums):
     '''
     return sum(nums, 0.0) / len(nums)
     
+def removelist(lis, remove):
+    for rem in remove:
+        for el in lis:
+            if rem[1][0] == el[0]:
+                lis.remove(el)
+    return lis
+
 def topn(users, n):
     artists = dict()
     for user in users:
@@ -197,4 +204,5 @@ def show_recommendations_by_genre(username, genre, n):
         l = all_artists
     predictions = predi(username, l)
     top_n = get_top_n(predictions, n)
-    return render_template('recommend.html', user=username, recs=enumerate(top_n[username]))
+    novel = removelist(get_top_n(predictions, n)[username], solotopn(username, 25))
+    return render_template('recommend.html', user=username, recs=enumerate(top_n[username]), novelrecs=enumerate(novel))

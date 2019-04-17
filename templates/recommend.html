@@ -26,6 +26,7 @@
             <div class="usercontent">
                 <div class="row">
                     <div class="col white">
+                        <h3>All Recommendations</h3>
                         {% for index, (artist, est) in recs %}
                             {% if est > 1 %}
                                 <div class="row artistrow">
@@ -73,59 +74,52 @@
                             {% endif %}
                         {% endfor %}
                     </div>
-                    <div class="col">
-                        <div class="buttons">
-                            <button type="button" class="btn btn-warning">
-                                <a href="../../top150/10">Recommend 10: Top 150 (Last.fm)</a>
-                            </button>
-                            <button type="button" class="btn btn-outline-primary">
-                                <a href="../../top150/25">25</a>
-                            </button>
-                            <button type="button" class="btn btn-outline-primary">
-                                <a href="../../top150/50">50</a>
-                            </button>
+                    <div class="col white">
+                        <h3>New Recommendations</h3>
+                        {% for index, (artist, est) in novelrecs %}
+                        {% if est > 1 %}
+                        <div class="row artistrow">
+                            <div class="col">
+                                <span class="artistindex 
+                                    {% if est > 150 %}
+                                    high">
+                                    {% elif est > 100 %}
+                                    med">
+                                    {% elif est > 50 %}
+                                    low">
+                                    {% else %}
+                                    normal">
+                                    {% endif %}
+                                    {{index + 1}}.
+                                </span>
+                                <span class="artist 
+                                    {% if est > 150 %}
+                                    high">
+                                    {% elif est > 100 %}
+                                    med">
+                                    {% elif est > 50 %}
+                                    low">
+                                    {% else %}
+                                    normal">
+                                    {% endif %}
+                                    {{artist}}
+                                </span>
+                            </div>
+                            <div class="col ratings">
+                                <span class={% if est > 150 %} "high">
+                                    {% elif est > 100 %}
+                                    "med">
+                                    {% elif est > 50 %}
+                                    "low">
+                                    {% else %}
+                                    "normal">
+                                    {% endif %}
+                                    {{est}}%
+                                </span>
+                            </div>
                         </div>
-                        <div class="buttons">
-                            <button type="button" class="btn btn-primary">
-                                <a href="../../all/10">Recommend 10: All Artists</a>
-                            </button>
-                            <button type="button" class="btn btn-outline-primary">
-                                <a href="../../all/25">25</a>
-                            </button>
-                            <button type="button" class="btn btn-outline-primary">
-                                <a href="../../all/50">50</a>
-                            </button>
-                        </div>
-                        <div class="buttons">
-                            <button type="button" class="btn btn-default">
-                                <a href="../../alternative/10">Recommend 10: Alternative</a>
-                            </button>
-                        </div>
-                        <div class="buttons">
-                            <button type="button" class="btn btn-default">
-                                <a href="../../electronic/10">Recommend 10: Electronic</a>
-                            </button>
-                        </div>
-                        <div class="buttons">
-                            <button type="button" class="btn btn-default">
-                                <a href="../../country/10">Recommend 10: Country</a>
-                            </button>
-                        </div>
-                        <div class="buttons">
-                            <button type="button" class="btn btn-default">
-                                <a href="../../metal/10">Recommend 10: Metal</a>
-                            </button>
-                        </div>
-                        <div class="buttons">
-                            <button type="button" class="btn btn-default">
-                                <a href="../../rock/10">Recommend 10: Rock</a>
-                            </button>
-                        </div>
-                        <div class="buttons">
-                            <button type="button" class="btn btn-default">
-                                <a href="../../rap/10">Recommend 10: Rap</a>
-                            </button>
-                        </div>
+                        {% endif %}
+                        {% endfor %}
                     </div>
                 </div>
             </div>
