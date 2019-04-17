@@ -1,0 +1,169 @@
+body {
+    margin-bottom: 55px;
+}
+a, a:link, a:hover, a:visited {
+    color: #007bff;
+}
+button.btn-outline-primary a, button.btn-outline-primary a:link, .button.btn-outline-primary a:visited {
+    color: #007bff;
+}
+button.btn-outline-primary:hover a, header a, button.btn-primary a, button.btn-primary a:link, button.btn-primary a:hover, button.btn-primary a:visited {
+    color: #FEFEFE;
+}
+.btn-outline-primary:hover {
+    background-color: #007bff !important;
+}
+.btn.btn-outline-primary {
+    background-color: white;
+}
+.header a {
+    color: #FEFEFE;
+    text-decoration: none;
+}
+.header, .footer {
+    width: 100%;
+    padding: 10px;
+    background: black;
+    color: #FEFEFE;
+}
+.header {
+    left: 0;
+    top: 0;
+}
+.header.dup {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 999;
+}
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 999;
+    height: 55px;
+}
+.container {
+    min-width: 80%;
+}
+.container .row {
+    justify-content: space-evenly;
+}
+.user {
+    width: 350px;
+    max-width: 350px;
+    min-width: 350px;
+    webkit-box-shadow: 0px 5px 12px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 5px 12px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 5px 12px 0px rgba(0,0,0,0.75);
+    border: 2px solid black;
+}
+.user, .detaileduser {
+    border-radius: 20px;
+    word-wrap: anywhere;
+    margin: 15px;
+    padding: 5px;
+    background: black;
+}
+.userlink {
+    text-align: center;
+    padding: 5px;
+}
+.userlink a {
+    font-size: x-large;
+    margin: 0 auto;
+    font-weight: bolder;
+    color: black;
+}
+.detaileduser .userlink a {
+    color: white;
+    font-size: 28px;
+}
+.usercontent {
+    text-align: left;
+    padding: 15px 15px 0 15px;
+}
+.usercontent .col {
+    padding-right: 0;
+}
+.usercontent .col-4 {
+    padding-left: 0;
+}
+.buttons {
+    margin: 10px;
+}
+.buttons .btn {
+    font-size: larger;
+}
+.row:nth-of-type(7n+1) .user {
+   background: red;
+}
+.row:nth-of-type(7n+2) .user {
+   background: orange;
+}
+.row:nth-of-type(7n+3) .user {
+   background: yellow;
+}
+.row:nth-of-type(7n+4) .user {
+   background: green;
+}
+.row:nth-of-type(7n+5) .user {
+   background: blue;
+}
+.row:nth-of-type(7n+6) .user {
+   background: indigo;
+}
+.row:nth-of-type(7n+7) .user {
+    background: violet;
+}
+.artist {
+    text-transform: capitalize;
+    color: black;
+}
+.high, .med, .low, .normal {
+    font-weight: bold;
+}
+.high {
+    color: turquoise;
+    font-size: 30px;
+}
+.med {
+    color: #41da41;
+    font-size: 25px;
+}
+.low {
+    font-size: 20px;
+    color: #b1cb00;
+}
+.normal {
+    font-size: 17px;
+    color: #adadad;
+}
+.dark {
+    color: #FDFDFD;
+    background-color: #747474;
+    padding: 15px;
+    margin-left: 15px;
+    margin-right: 15px;
+    border-radius: 5px;
+}
+.dark .artistrow {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+.ratings {
+    text-align: right;
+    padding-right: 40px !important;
+}
+.white {
+    border-radius: 10px;
+    background-color: #FCFCFC;
+    padding: 15px;
+    margin: 5px;
+}
+.artistindex, .artistplays {
+    color: #007bff;
+}
+.rightbuffer {
+    margin-right: 35px;
+}
