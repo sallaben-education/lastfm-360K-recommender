@@ -28,15 +28,15 @@
                     <div class="col white">
                         <h3>All Recommendations</h3>
                         {% for index, (artist, est) in recs %}
-                            {% if est > 1 %}
+                            {% if est > 0 %}
                                 <div class="row artistrow">
                                     <div class="col">
                                         <span class="artistindex 
-                                        {% if est > 150 %}
+                                        {% if est >= 100 %}
                                             high">
-                                        {% elif est > 100 %}
+                                        {% elif est >= 75 %}
                                             med">
-                                        {% elif est > 50 %}
+                                        {% elif est >= 50 %}
                                             low">
                                         {% else %}
                                             normal">
@@ -44,11 +44,11 @@
                                             {{index + 1}}.
                                         </span>
                                         <span class="artist 
-                                        {% if est > 150 %}
+                                        {% if est >= 100 %}
                                             high">
-                                        {% elif est > 100 %}
+                                        {% elif est >= 75 %}
                                             med">
-                                        {% elif est > 50 %}
+                                        {% elif est >= 50 %}
                                             low">
                                         {% else %}
                                             normal">
@@ -58,11 +58,11 @@
                                     </div>
                                     <div class="col ratings">
                                         <span class=
-                                        {% if est > 150 %}
+                                        {% if est >= 100 %}
                                             "high">
-                                        {% elif est > 100 %}
+                                        {% elif est >= 75 %}
                                             "med">
-                                        {% elif est > 50 %}
+                                        {% elif est >= 50 %}
                                             "low">
                                         {% else %}
                                             "normal">
@@ -77,48 +77,48 @@
                     <div class="col white">
                         <h3>New Recommendations</h3>
                         {% for index, (artist, est) in novelrecs %}
-                        {% if est > 1 %}
-                        <div class="row artistrow">
-                            <div class="col">
-                                <span class="artistindex 
-                                    {% if est > 150 %}
-                                    high">
-                                    {% elif est > 100 %}
-                                    med">
-                                    {% elif est > 50 %}
-                                    low">
-                                    {% else %}
-                                    normal">
-                                    {% endif %}
-                                    {{index + 1}}.
-                                </span>
-                                <span class="artist 
-                                    {% if est > 150 %}
-                                    high">
-                                    {% elif est > 100 %}
-                                    med">
-                                    {% elif est > 50 %}
-                                    low">
-                                    {% else %}
-                                    normal">
-                                    {% endif %}
-                                    {{artist}}
-                                </span>
-                            </div>
-                            <div class="col ratings">
-                                <span class={% if est > 150 %} "high">
-                                    {% elif est > 100 %}
-                                    "med">
-                                    {% elif est > 50 %}
-                                    "low">
-                                    {% else %}
-                                    "normal">
-                                    {% endif %}
-                                    {{est}}%
-                                </span>
-                            </div>
-                        </div>
-                        {% endif %}
+                            {% if est > 0 %}
+                                <div class="row artistrow">
+                                    <div class="col">
+                                        <span class="artistindex 
+                                            {% if est >= 100 %}
+                                            high">
+                                            {% elif est >= 75 %}
+                                            med">
+                                            {% elif est >= 50 %}
+                                            low">
+                                            {% else %}
+                                            normal">
+                                            {% endif %}
+                                            {{index + 1}}.
+                                        </span>
+                                        <span class="artist 
+                                            {% if est >= 100 %}
+                                            high">
+                                            {% elif est >= 75 %}
+                                            med">
+                                            {% elif est >= 50 %}
+                                            low">
+                                            {% else %}
+                                            normal">
+                                            {% endif %}
+                                            {{artist}}
+                                        </span>
+                                    </div>
+                                    <div class="col ratings">
+                                        <span class={% if est >= 100 %} "high">
+                                            {% elif est >= 75 %}
+                                            "med">
+                                            {% elif est >= 50 %}
+                                            "low">
+                                            {% else %}
+                                            "normal">
+                                            {% endif %}
+                                            {{est}}%
+                                        </span>
+                                    </div>
+                                </div>
+                            {% endif %}
                         {% endfor %}
                     </div>
                 </div>

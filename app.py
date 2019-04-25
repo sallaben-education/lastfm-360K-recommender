@@ -5,11 +5,12 @@ from collections import defaultdict
 from collections import Counter
 import pandas as pd
 import pickle
+from statistics import median
 
 app = Flask(__name__)
 
 print("LOADING DATASET...")
-ratings = pd.read_csv("data/p0.tsv", sep="\t",
+ratings = pd.read_csv("data/p0x3.tsv", sep="\t",
                       names=['user', 'item', 'plays', 'obsession', 'rating'], header=None)
 
 print("SUMMING USERS BY PLAYS...")
@@ -17,26 +18,34 @@ plays = ratings.groupby(['user'], as_index=False)[['user', 'plays']].sum().reset
 userplays = dict(zip(plays["user"], plays["plays"]))
       
 print("LOADING MODEL...")
-algo = pickle.load(open('SVDBP.sav', 'rb'))
+algo = pickle.load(open('SVDp0x3.sav', 'rb'))
 
-users =         ["02eeccf9502709d9d0d34ac99ded328d8201be18",
-                 "0197a658d9ea8811877e518dfe399c52dd8a84d4",
-                 "0301157d84b0ccc9a436479d11676eba0882010b",
-                 "025e476b4e8f4aec3bf263c737b65fd856acd0c2",
-                 "006261139d787c1e43b4c69d304f2772367c1005",
-                 "00b18113f5b06f36dfb587f86b8ef4141dff3118",
-                 "0005a18022e9a3df17694fe19f5b90edadda7953",
-                 "00f57a7fe44eb4d0851d62c5f0ddd003ea43c7ae",
-                 "000429493d9716b66b02180d208d09b5b89fbe64",
-                 "03274dae59b1b5bc750a0738f8733b44972ce3c5",
-                 "01760a1afde70737fa4dd70394e23690b3238768",
-                 "0242309977d951b93ba29da5d0bd780bd237d086",
-                 "0039d28c203c03dc8460fbb91fa295b287d49199",
-                 "00554b78cbcf17e234ce8ef6abcc364ed2a2c4f4",
-                 "0056ccd136b6ad6fcf090e2f51afd5cca888e56f"]
+# users =         ["02eeccf9502709d9d0d34ac99ded328d8201be18",
+                #  "0197a658d9ea8811877e518dfe399c52dd8a84d4",
+                #  "0301157d84b0ccc9a436479d11676eba0882010b",
+                #  "025e476b4e8f4aec3bf263c737b65fd856acd0c2",
+                #  "006261139d787c1e43b4c69d304f2772367c1005",
+                #  "00b18113f5b06f36dfb587f86b8ef4141dff3118",
+                #  "0005a18022e9a3df17694fe19f5b90edadda7953",
+                #  "00f57a7fe44eb4d0851d62c5f0ddd003ea43c7ae",
+                #  "000429493d9716b66b02180d208d09b5b89fbe64",
+                #  "03274dae59b1b5bc750a0738f8733b44972ce3c5",
+                #  "01760a1afde70737fa4dd70394e23690b3238768",
+                #  "0242309977d951b93ba29da5d0bd780bd237d086",
+                #  "00554b78cbcf17e234ce8ef6abcc364ed2a2c4f4",
+                #  "0056ccd136b6ad6fcf090e2f51afd5cca888e56f"]
+users = ["02eeccf9502709d9d0d34ac99ded328d8201be18",
+            "0d1f9e9b5c576082e335a2c197a512432f7e896d",
+            "000429493d9716b66b02180d208d09b5b89fbe64",
+            "01760a1afde70737fa4dd70394e23690b3238768",
+            "0420c51a72f0898c3f064121c0636f1ba73eee3d",
+            "0c224cd9379518457cecbcdcdc2d10e7ebcad2d3",
+            "01ae97e2cc42b5479e0ac3c2a424325c32b2fff7",
+            "0de2759e5b8d1abb6fb7604230c07970da79ee8e",
+            "0d53c8106fa54369ad725f6d150f09c799fa7e85"]
 
-topusers = dict(Counter(userplays).most_common(24))
-users = set(set(topusers.keys()).union(set(users)))
+# topusers = dict(Counter(userplays).most_common(100))
+# users = set(set(topusers.keys()).union(set(users)))
 
 rap =           ["eminem",
                  "ludacris",
@@ -128,7 +137,7 @@ def get_top_n(predictions, n=10):
     # First map the predictions to each user.
     top_n = defaultdict(list)
     for uid, iid, true_r, est, _ in predictions:
-        top_n[uid].append((iid, int((est - 1) * 100)))
+        top_n[uid].append((iid, int((est - 0.71549) * 100)))
     # Then sort the predictions for each user and retrieve the k highest ones.
     for uid, user_ratings in top_n.items():
         user_ratings.sort(key=lambda x: x[1], reverse=True)
@@ -171,6 +180,10 @@ top150 = list(dict(Counter(playdict).most_common(150)).keys())
 
 all_artists = list(playdict.keys())
 all_artists.remove("[unknown]")
+all_artists.remove("original broadway cast")
+all_artists.remove("böhse onkelz")
+all_artists.remove("Бумбокс")
+all_artists.remove("Агата Кристи")
 
 def predi(user, items):
     return algo.test(zip([user]*len(items), items, [1]*len(items)), verbose=False)
